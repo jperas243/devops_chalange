@@ -1,7 +1,7 @@
 # DevOps Challenge
 
 Neste desafio foi me pedido para automatizar o deploy de uma nova versão de uma aplicação Sinatra (Ruby) com zero-downtime
-Para tal, segui o tutorial (link 1) da AWS para montar a infraestrutura e adaptei o processo para terraform.
+Para tal, segui o tutorial da AWS (link 1) para montar a infraestrutura e adaptei o processo para terraform.
 
 Nota: O deploy automatizado ainda não foi implementado, uma vez que o AWS CodePipeline não consegue dar pull de tags (apenas de branches),
 portanto vai ser necessário uma nova abordagem. No entanto, é possivel fazer a gestão do deploy com zero-downtime (link 2) manualmente com a infraestrutura fornecida pelo codigo de Terraform 
@@ -32,23 +32,25 @@ Dentro do repositório:
     *terraform init
     *terraform apply
 
-## Deploy da Aplicação (manual)
-
-    * Aceder ao environment (dev ou prod) pela AWS
-    * Carregar em  
-
-## Deploy da Aplicação com zero-downtime (manual)
-
-    *
-
 ## Infraestrutura
 
     *1 AWS VPC
     *2 AWS Elastic Beanstalk (prod e dev environments)
     *1 AWS CodePipeline (dev)
 
+## Deploy da Aplicação (manual)
 
+    * Aceder ao environment (dev ou prod) pela AWS
+    * Carregar em "Upload and Deploy" e selecionar a build
+    * Verificar se deploy foi bem sucedido
 
-## 
+## Deploy da Aplicação com zero-downtime (manual)
+
+    *Criar um novo ambiente no beanstalk (prod-$version)
+    *Verificar que o deploy foi bem sucedido (nesse novo ambiente)
+    *Realiar a troca de URL pela consola da AWS
+
+## Deploy Automatizado ( SOON )
+ 
 
 
