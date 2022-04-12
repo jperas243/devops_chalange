@@ -1,5 +1,5 @@
-access_key="AKIAXZJYWBNUFB5TDNV7"
-secret_key="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"
+access_key=""
+secret_key=""
 github_branch = "master"
 github_repo = "Streetbees/cats"
 connection_github_arn =  "arn:aws:codestar-connections:eu-central-1:535379184488:connection/6473ece3-517a-4b46-abf6-7231af037dd4"
