@@ -1,42 +1,41 @@
 # DevOps Challenge
 
-Neste desafio foi me pedido para automatizar o deploy de uma nova versão de uma aplicação Sinatra (Ruby) com zero-downtime
+Neste desafio foi me pedido para automatizar o deploy de uma aplicação Sinatra (Ruby) com zero-downtime
 Para tal, segui o tutorial da AWS (link 1) para montar a infraestrutura e adaptei o processo para terraform.
 
-Nota: O deploy automatizado ainda não foi implementado, uma vez que o AWS CodePipeline não consegue dar pull de tags (apenas de branches),
-portanto vai ser necessário uma nova abordagem. No entanto, é possivel fazer a gestão do deploy com zero-downtime (link 2) manualmente com a infraestrutura fornecida pelo codigo de Terraform 
 
     * https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/ruby-sinatra-tutorial.html
 
     * https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.CNAMESwap.html
 
-Nota 2: A minha nova abordagem vai ser um bash script no terraform:
-    
-    *git clone
-    *git chekout da tag
-    *build/zip 
-    *aws cli para deploy com zero-downtime
+    * https://docs.aws.amazon.com/cli/latest/reference/elasticbeanstalk/index.html#cli-aws-elasticbeanstalk
+
     
 
 ## Pre-requesitos
 
+    * Git instalado na consola
     * Conta AWS (Access e Private keys)
-    * Conta Github associada com a AWS ( CodeStar Connection )
+    * AWS CLI configurado com a Access e Private keys ( aws configure --profile indie )
     * Preencher o ficheiro terraform.tfvars com os valores adequados (geralmente coloco este ficheiro no gitignore)
 
 ## Montar Infraestrutura
 
 Dentro do repositório: 
 
-    *cd terraform
-    *terraform init
-    *terraform apply
+    * cd terraform
+    * terraform init
+    * terraform apply
+
+O resultado são dois ambientes:
+
+    * dev com a versão 3.0.0
+    * prod com a versão 1.0.0  
 
 ## Infraestrutura
 
     *1 AWS VPC
-    *2 AWS Elastic Beanstalk (prod e dev environments)
-    *1 AWS CodePipeline (dev)
+    *2 AWS Elastic Beanstalk Environments (prod e dev)
 
 ## Deploy da Aplicação (manual)
 
@@ -46,11 +45,12 @@ Dentro do repositório:
 
 ## Deploy da Aplicação com zero-downtime (manual)
 
-    *Criar um novo ambiente no beanstalk (prod-$version)
+    *Criar um novo ambiente no beanstalk (temp-prod)
     *Verificar que o deploy foi bem sucedido (nesse novo ambiente)
-    *Realiar a troca de URL pela consola da AWS
+    *Realizar a troca de URL pela consola da AWS
 
-## Deploy Automatizado ( SOON )
+## Green/Blue Deploy
  
-
+Este deploy consiste na troca de url's entre dev e prod, para tal é necessário mudar o valor 
+count para "1" no "swap" do ficheiro terraform/main.tf....ou basta mudar pela AWS Home Console
 
